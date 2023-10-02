@@ -41,12 +41,12 @@ public class StringListImpl implements StringList {
             return item;
         }
 
-        System.arraycopy(storage,index,storage,index+1,size-index);
-        storage[index]=item;
+        System.arraycopy(storage, index, storage, index + 1, size - index);
+        storage[index] = item;
         size++;
 
-            return item;
-        }
+        return item;
+    }
 
     @Override
     public String set(int index, String item) {
@@ -80,7 +80,7 @@ public class StringListImpl implements StringList {
 
     @Override
     public boolean contains(String item) {
-        return indexOf(item) !=-1;
+        return indexOf(item) != -1;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class StringListImpl implements StringList {
 
     @Override
     public boolean equals(StringList otherList) {
-        return Arrays.equals(this.toArray(),otherList.toArray());
+        return Arrays.equals(this.toArray(), otherList.toArray());
     }
 
     @Override
@@ -133,7 +133,7 @@ public class StringListImpl implements StringList {
     }
 
     @Override
-    public String[] toArray(){
+    public String[] toArray() {
         return Arrays.copyOf(storage, size);
     }
 

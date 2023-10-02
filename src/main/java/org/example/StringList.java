@@ -1,4 +1,6 @@
-package org.example;public interface StringList {
+package org.example;
+
+public interface StringList {
     String add(String item);
 
     String add(int index, String item);
@@ -26,7 +28,6 @@ package org.example;public interface StringList {
     void clear();
 
     public String[] toArray();
-
 
 
 }
