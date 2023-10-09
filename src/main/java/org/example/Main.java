@@ -10,11 +10,12 @@ import static org.example.SelectionSort.sortSelection;
 
 public class Main {
     public static void main(String[] args) {
+
 //        bubbleSort1();
 //        selectionSort2();
 //        insertSelection2();
-        sort();
-        sort1();
+      /*  sort();
+        sort1();*/
         sort2();
     }
 //
@@ -37,7 +38,7 @@ public class Main {
 //        insertSelection(numbers);
 //    }
 
-    public static void sort() {
+   /* public static void sort() {
         int[] numbers = generateRandomArray();
         long start = System.currentTimeMillis();
         bubbleSort(numbers);
@@ -49,7 +50,7 @@ public class Main {
         long start = System.currentTimeMillis();
         sortSelection(numbers);
         System.out.println(System.currentTimeMillis() - start);
-    }
+    }*/
 
     public static void sort2() {
         int[] numbers = generateRandomArray();
@@ -58,6 +59,7 @@ public class Main {
         System.out.println(System.currentTimeMillis() - start);
     }
 }
+
 
 
 

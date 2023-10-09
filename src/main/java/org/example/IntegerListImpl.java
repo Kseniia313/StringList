@@ -3,28 +3,24 @@ package org.example;
 
 import org.example.Exception.InvalidIndexException;
 import org.example.Exception.NullItemException;
-import org.example.Exception.StorageIsFullException;
-
 import java.util.Arrays;
 
 
 public class IntegerListImpl implements IntegerList {
-    private final Integer[] storage;
+    private  Integer[] storage;
 
     private int size;
 
     public IntegerListImpl() {
         storage = new Integer[10];
-
     }
-
     public IntegerListImpl(int intSize) {
         storage = new Integer[intSize];
     }
 
     @Override
     public Integer add(Integer item) {
-        validateSize();
+        growIfNedeed();
         validateItem(item);
 
         storage[size++] = item;
@@ -33,7 +29,7 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public Integer add(int index, Integer item) {
-        validateSize();
+        growIfNedeed();
         validateItem(item);
         validateIndex(index);
 
@@ -147,9 +143,9 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    private void validateSize() {
+    private void growIfNedeed() {
         if (size == storage.length) {
-            throw new StorageIsFullException();
+            grow();
         }
     }
 
@@ -160,15 +156,7 @@ public class IntegerListImpl implements IntegerList {
     }
 
     private void insertSelection(Integer[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int temp = arr[i];
-            int j = i;
-            while (j > 0 && arr[j - 1] >= temp) {
-                arr[j] = arr[j - 1];
-                j--;
-            }
-            arr[j] = temp;
-        }
+        quickSort(arr,0, arr.length-1);
     }
 
     private boolean binarySearch(Integer[] arr, Integer item) {
@@ -191,7 +179,45 @@ public class IntegerListImpl implements IntegerList {
         }
         return false;
     }
-}
+
+    private void grow() {
+
+        storage = Arrays.copyOf(storage, size + size / 2);
+    }
+
+    private void quickSort(Integer[] arr, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+
+            quickSort(arr, begin, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, end);
+        }
+    }
+
+    private int partition(Integer[] arr, int begin, int end) {
+
+            int pivot = arr[end];
+            int i = (begin - 1);
+
+            for (int j = begin; j < end; j++) {
+                if (arr[j] <= pivot) {
+                    i++;
+
+                    swapElements(arr, i, j);
+                }
+            }
+
+            swapElements(arr, i + 1, end);
+            return i + 1;
+        }
+    private static void swapElements(Integer[] arr, int indexA, int indexB) {
+        int tmp = arr[indexA];
+        arr[indexA] = arr[indexB];
+        arr[indexB] = tmp;
+    }
+    }
+
+
 
 
 

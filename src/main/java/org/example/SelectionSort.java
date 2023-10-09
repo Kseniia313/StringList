@@ -28,4 +28,5 @@ public class SelectionSort {
             swapElements(arr, i, minElementIndex);
         }
     }
+
 }
